@@ -13,47 +13,41 @@ import vista.DialogoEditoriales;
 import vista.NuevaEditorial;
 import vista.VentanaPpal;
 
-/**
- * @author David
- *
- */
 public class Controlador {
 
-	// VEntanas del sistema
+	// Ventanas del sistema. ventanas de la aplicación
 	private VentanaPpal ventanaPpal;
 	private DialogoEditoriales dialogoEditoriales;
-
 	private NuevaEditorial NuevaEditorial;
 	
-	// Objetos DAO o CRUD de la base de datos
+	// Objetos DAO para el acceso a la base de datos
 	private EditorialDAO editorialDAO;
 	
+	
 	public Controlador() {
-		// Creamos las ventanas de la aplicaci�n
-		ventanaPpal = new VentanaPpal();
-		dialogoEditoriales = new DialogoEditoriales();
-		NuevaEditorial = new NuevaEditorial();
+		// Creo las ventanas de la aplicación, las instancio
+		this.ventanaPpal = new VentanaPpal();
+		this.dialogoEditoriales = new DialogoEditoriales();
+		this.NuevaEditorial = new NuevaEditorial();
 		
 		// Dando acceso al controlador desde las vistas
-		ventanaPpal.setControlador(this);
-		dialogoEditoriales.setControlador(this);
-		NuevaEditorial.setControlador(this);
+		this.ventanaPpal.setControlador(this); 
+		//que a la ventana principal le va a controlar un controlador que sea este mismo que estoy creando
+		this.dialogoEditoriales.setControlador(this);
+		this.NuevaEditorial.setControlador(this);
 		
 		// Creamos los objetos DAO
 		editorialDAO = new EditorialDAO();
 	}
 	
+	
 	public void inciarPrograma() {
-		
-		
-		
-		
-		
-		ventanaPpal.setVisible(true);
+		//muestra la ventana principal para que se empiece a interactuar con ella
+		this.ventanaPpal.setVisible(true);
 	}
 	
 	public void mostrarEditoriales() {
-		ArrayList<Editorial> lista = editorialDAO.obtenerEditoriales();
+		ArrayList<Editorial> lista = editorialDAO.obtenerTodasEditoriales();
 		dialogoEditoriales.setListaEditoriales(lista);
 		dialogoEditoriales.setVisible(true);
 	}
@@ -74,7 +68,7 @@ public class Controlador {
 	}
 
 	public void mostrarActualizarEditorial(int codEditorial) {
-		Editorial e = editorialDAO.obtenerEditorial(codEditorial);
+		Editorial e = editorialDAO.obtenerUnaEditorial(codEditorial);
 		NuevaEditorial.setEditorial(e);
 		NuevaEditorial.setVisible(true);
 	}

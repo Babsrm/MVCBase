@@ -1,4 +1,4 @@
--- Active: 1638377815108@@127.0.0.1@3306
+-- Active: 1667910552053@@127.0.0.1@3306@clientes_jardineria
 DROP DATABASE IF EXISTS biblioteca;
 CREATE DATABASE biblioteca   character set latin1 collate latin1_spanish_Ci;
 use biblioteca;

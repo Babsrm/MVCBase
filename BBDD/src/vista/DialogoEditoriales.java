@@ -29,9 +29,6 @@ public class DialogoEditoriales extends JDialog {
 	private Controlador controlador;
 
 
-	/**
-	 * Create the dialog.
-	 */
 	public DialogoEditoriales() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -72,18 +69,18 @@ public class DialogoEditoriales extends JDialog {
 				contentPanel.add(panel, "cell 0 2,grow");
 				panel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 				{
-					JButton btnNewButton_1 = new JButton("Modificar");
-					btnNewButton_1.addActionListener(new ActionListener() {
+					JButton btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							llamarActualizar();
 						}
 					});
-					panel.add(btnNewButton_1);
-					btnNewButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
+					panel.add(btnModificar);
+					btnModificar.setHorizontalAlignment(SwingConstants.RIGHT);
 				}
-				JButton btnNewButton = new JButton("Cerrar");
-				panel.add(btnNewButton);
-				btnNewButton.addActionListener(new ActionListener() {
+				JButton btnCerrar = new JButton("Cerrar");
+				panel.add(btnCerrar);
+				btnCerrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
 					}
@@ -106,7 +103,7 @@ public class DialogoEditoriales extends JDialog {
 		modelo.setRowCount(0);
 		for (Editorial editorial : lista) {
 			Object [] fila = {
-					editorial.getCodEditorial(),editorial.getNombre(),editorial.getAño()
+					editorial.getCodEditorial(),editorial.getNombre(),editorial.getAnio()
 			};
 			modelo.addRow(fila);
 		}

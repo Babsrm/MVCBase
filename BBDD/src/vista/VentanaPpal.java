@@ -17,10 +17,6 @@ public class VentanaPpal extends JFrame {
 	private Controlador controlador;
 
 
-
-	/**
-	 * Create the frame.
-	 */
 	public VentanaPpal() {
 		
 		setTitle("Base de datos de Biblioteca");
@@ -31,28 +27,24 @@ public class VentanaPpal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new MigLayout("", "[][grow][][grow][]", "[][][][][][][]"));
 		
-		JButton btnNewButton = new JButton("MostarEditoriales");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnMostrarEd = new JButton("MostarEditoriales");
+		btnMostrarEd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.mostrarEditoriales();
 			}
 		});
-		contentPane.add(btnNewButton, "cell 1 1,growx");
+		contentPane.add(btnMostrarEd, "cell 1 1,growx");
 		
-		JButton btnNewButton_4 = new JButton("Insertar Editorial");
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton btnInsertarEditoral = new JButton("Insertar Editorial");
+		btnInsertarEditoral.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.mostrarNuevaEditorial();
 			}
 		});
-		contentPane.add(btnNewButton_4, "cell 1 3,growx");
+		contentPane.add(btnInsertarEditoral, "cell 1 3,growx");
 	}
 
-
-
-	/**
-	 * @param controlador el controlador a establecer
-	 */
+	//constructor de la clase controlador. es necesario porque es el acceso entre el controlador y las ventanas vista
 	public void setControlador(Controlador controlador) {
 		this.controlador = controlador;
 	}

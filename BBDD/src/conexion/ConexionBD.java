@@ -25,7 +25,7 @@ public class ConexionBD {
 	private Connection conexion=null;
 	
 	/**
-	 * M�todo getter de la conexi�n. Se encarga de registrar el driver de MySQL y
+	 * Método getter de la conexión. Se encarga de registrar el driver de MySQL y
 	 * solicitar un objeto conection con los detalles de conexion especificados 
 	 * por las constantes de clase
 	 * Controla las excepciones de la clase, con lo que nos las propaga hacia la 
@@ -37,7 +37,7 @@ public class ConexionBD {
 			return conexion;
 		}
 		
-		// REgistra el driver de MySQL
+		// RE-egistra el driver de MySQL
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
@@ -51,12 +51,13 @@ public class ConexionBD {
 		return conexion;
 	}
 	
+	//desconecta de la base de datos
 	public void desconectar() {
 		try {
 			conexion.close();
 			conexion=null;
 		} catch (SQLException e) {
-			System.out.println("Erorr cerrrando la conexion "+ e.getMessage());
+			System.out.println("Error cerrrando la conexion "+ e.getMessage());
 		}
 	}
 
