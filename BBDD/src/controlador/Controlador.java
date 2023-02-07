@@ -48,7 +48,7 @@ public class Controlador {
 	
 	public void mostrarEditoriales() {
 		ArrayList<Editorial> lista = editorialDAO.obtenerTodasEditoriales();
-		dialogoEditoriales.setListaEditoriales(lista);
+		dialogoEditoriales.setListaEditoriales(lista); //esta lista la creamos para borrar la antigua y que vaya pintando la nueva lista. siempre la misma ventana, solo cambia la lista que queremos que nos pinte
 		dialogoEditoriales.setVisible(true);
 	}
 	
@@ -60,9 +60,9 @@ public class Controlador {
 	public void insertarEditorial(Editorial ed) {
 		int res=editorialDAO.insertarEditorial(ed);
 		if (res==0) {
-			JOptionPane.showMessageDialog(NuevaEditorial, "Error no se ha podido insertar");
+			JOptionPane.showMessageDialog(NuevaEditorial, "Error: no se ha podido insertar.");
 		} else {
-			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial a�adido correctamente.");
+			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial añadida correctamente.");
 			NuevaEditorial.setVisible(false);
 		}
 	}
@@ -76,11 +76,24 @@ public class Controlador {
 	public void actualizarEditorial(Editorial ed) {
 		int res=editorialDAO.actualizarEditorial(ed);
 		if (res==0) {
-			JOptionPane.showMessageDialog(NuevaEditorial, "Error no se ha podido actualizar");
+			JOptionPane.showMessageDialog(NuevaEditorial, "Error: no se ha podido actualizar");
 		} else {
-			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial actualizado correctamente.");
+			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial actualizada correctamente.");
 			NuevaEditorial.setVisible(false);
 		}
 		mostrarEditoriales();
 	}
-}
+
+
+	public void eliminarEditorial(int codEditorial) {
+		int res = editorialDAO.eliminarEditorial(codEditorial); 
+		if (res==0) {
+			JOptionPane.showMessageDialog(NuevaEditorial, "Error: no se ha podido eliminar.");
+		} else {
+			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial eliminada correctamente.");
+		this.NuevaEditorial.setVisible(false);
+			}
+		mostrarEditoriales();	
+		}
+		
+	}

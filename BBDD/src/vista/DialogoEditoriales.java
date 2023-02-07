@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -27,7 +29,6 @@ public class DialogoEditoriales extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private Controlador controlador;
-
 
 	public DialogoEditoriales() {
 		setBounds(100, 100, 450, 300);
@@ -75,6 +76,15 @@ public class DialogoEditoriales extends JDialog {
 							llamarActualizar();
 						}
 					});
+					{
+						JButton btnEliminar = new JButton("Eliminar");
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								llamarEliminar();
+							}
+						});
+						panel.add(btnEliminar);
+					}
 					panel.add(btnModificar);
 					btnModificar.setHorizontalAlignment(SwingConstants.RIGHT);
 				}
@@ -89,13 +99,29 @@ public class DialogoEditoriales extends JDialog {
 		}
 	}
 	
+	protected void llamarEliminar() {
+		int fila=table.getSelectedRow();
+		if (fila == -1) {
+			JOptionPane.showMessageDialog(this, "Debe de seleccionar un elemento para borrarlo.");
+		} else {
+		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		int codEditorial = (int) modelo.getValueAt(fila, 0);
+		
+		controlador.eliminarEditorial(codEditorial);
+		}
+		
+	}
+
 	protected void llamarActualizar() {
 		int fila=table.getSelectedRow();
+		if (fila == -1) {
+			JOptionPane.showMessageDialog(this, "Debe de seleccionar un elemento a modificar.");
+		} else {
 		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
 		int codEditorial = (int) modelo.getValueAt(fila, 0);
 		
 		controlador.mostrarActualizarEditorial(codEditorial);
-		
+		}
 	}
 
 	public void setListaEditoriales(ArrayList<Editorial> lista) {

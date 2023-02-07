@@ -27,6 +27,7 @@ public class NuevaEditorial extends JFrame {
 	private JTextField txtAnio;
 	private Controlador controlador;
 	private Editorial editorial;
+	private JLabel lblTitulo;
 
 	
 	public NuevaEditorial() {
@@ -36,7 +37,7 @@ public class NuevaEditorial extends JFrame {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new MigLayout("", "[][grow]", "[][][][][]"));
 		{
-			JLabel lblTitulo = new JLabel("Insercion de editoriales");
+			lblTitulo = new JLabel("Insercion de editoriales");
 			lblTitulo.setOpaque(true);
 			lblTitulo.setForeground(Color.WHITE);
 			lblTitulo.setBackground(Color.BLACK);
@@ -94,21 +95,24 @@ public class NuevaEditorial extends JFrame {
 	protected void insertarEditorial() {
 		try {
 			String nombre = txtNombre.getText();
-			int año = Integer.parseInt(txtAnio.getText());
+			int anio = Integer.parseInt(txtAnio.getText());
 			
-			//Editorial ed = new Editorial(0,nombre,año);
+			//Editorial ed = new Editorial(0,nombre,anio); constructor con parámetros
 			Editorial ed = new Editorial();
 			
 			ed.setNombre(nombre);
-			ed.setAnio(año);
-			if (this.editorial == null)
-				controlador.insertarEditorial(ed);
-			else {
+			ed.setAnio(anio);
+			if (this.editorial == null) {
+				lblTitulo.setText("Insertar editorial");
+				//si la editorial no existe (es nueva), la añade
+				controlador.insertarEditorial(ed);}
+			else { //sino la actualiza
+				lblTitulo.setText("Modificar editorial");
 				ed.setCodEditorial(this.editorial.getCodEditorial());
 				controlador.actualizarEditorial(ed);
 				
 			}
-		} catch (NumberFormatException e ) {
+		} catch (NumberFormatException e ) { //controlo que en año introduzca un integer
 			JOptionPane.showMessageDialog(null, "Introduzca un año correcto");
 		}
 		

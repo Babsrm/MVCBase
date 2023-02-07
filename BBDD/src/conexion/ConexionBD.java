@@ -18,8 +18,8 @@ import java.sql.SQLException;
 public class ConexionBD {
 
 	private static final String database = "biblioteca";
-	private static final String usuario = "biblioteca";
-	private static final String contraseña = "123456";
+	private static final String usuario = "root";
+	private static final String contraseña = "1234";
 	private static final String url="jdbc:mysql://localhost/"+database;
 	
 	private Connection conexion=null;
@@ -56,8 +56,9 @@ public class ConexionBD {
 		try {
 			conexion.close();
 			conexion=null;
+			System.out.println("Conexión liberada correctamente.");
 		} catch (SQLException e) {
-			System.out.println("Error cerrrando la conexion "+ e.getMessage());
+			System.out.println("Error cerrando la conexion "+ e.getMessage());
 		}
 	}
 

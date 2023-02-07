@@ -84,9 +84,9 @@ public class EditorialDAO {
 			
 			if (resultado.next()) {
 				String nombre = resultado.getString("nombre");
-				int año = resultado.getInt("año");
+				int anio = resultado.getInt("anio");
 				
-				ed = new Editorial(codEditorial, nombre,año);
+				ed = new Editorial(codEditorial, nombre,anio);
 			}
 			
 		} catch (SQLException e) {
@@ -154,7 +154,7 @@ public class EditorialDAO {
 		int resultado=0;
 		
 		try {
-			consulta = con.prepareStatement("INSERT INTO editoriales (nombre,año)"
+			consulta = con.prepareStatement("INSERT INTO editoriales (nombre,anio)"
 					+ " VALUES (?,?) ");
 			
 			consulta.setString(1, editorial.getNombre());
@@ -183,7 +183,7 @@ public class EditorialDAO {
 		
 		try {
 			consulta = con.prepareStatement("UPDATE biblioteca.editoriales\n"
-					+ "SET nombre = ?, año = ?\n"
+					+ "SET nombre = ?, anio = ?\n"
 					+ "WHERE codEditorial = ?;");
 			
 			consulta.setString(1, editorial.getNombre());
@@ -207,7 +207,7 @@ public class EditorialDAO {
     }
 
 
-    public int eliminarEditorial(Editorial editorial) {
+    public int eliminarEditorial(int codEditorial) {
 		Connection con = conexion.getConexion();
 		PreparedStatement consulta = null;
 		int resultado=0;
@@ -216,7 +216,7 @@ public class EditorialDAO {
 			consulta = con.prepareStatement("DELETE FROM biblioteca.editoriales \n"
 					+ "WHERE codEditorial = ?");
 			
-			consulta.setInt(1, editorial.getCodEditorial());
+			consulta.setInt(1, codEditorial);
 			resultado=consulta.executeUpdate();
 
 		} catch (SQLException e) {
