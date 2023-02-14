@@ -57,6 +57,12 @@ public class Controlador {
 		NuevaEditorial.setVisible(true);
 	}
 	
+	public void mostrarActualizarEditorial(int codEditorial) {
+		Editorial e = editorialDAO.obtenerUnaEditorial(codEditorial);
+		NuevaEditorial.setEditorial(e);
+		NuevaEditorial.setVisible(true);
+	}
+	
 	public void insertarEditorial(Editorial ed) {
 		int res=editorialDAO.insertarEditorial(ed);
 		if (res==0) {
@@ -65,12 +71,6 @@ public class Controlador {
 			JOptionPane.showMessageDialog(NuevaEditorial, "Editorial añadida correctamente.");
 			NuevaEditorial.setVisible(false);
 		}
-	}
-
-	public void mostrarActualizarEditorial(int codEditorial) {
-		Editorial e = editorialDAO.obtenerUnaEditorial(codEditorial);
-		NuevaEditorial.setEditorial(e);
-		NuevaEditorial.setVisible(true);
 	}
 
 	public void actualizarEditorial(Editorial ed) {
